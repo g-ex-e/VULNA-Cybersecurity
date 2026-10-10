@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMarket - Espace VIP</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container vip-container">
+        <h1>⚠️ Espace VIP - Accès Restreint ⚠️</h1>
+        <!-- 📊 CHIFFRES FINANCIERS -->
+        <h2>💰 Informations Financières</h2>
+        <table class="vip-table">
+            <tr><td>📈 Chiffre d’affaires annuel</td> <td>💰 12,5M€</td></tr>
+            <tr><td>📉 Pertes déclarées</td> <td>🔻 2,1M€</td></tr>
+            <tr><td>💸 Total des dépenses</td> <td>📊 4,8M€</td></tr>
+            <tr><td>🏦 Fonds en banque</td> <td>💎 5,3M€</td></tr>
+            <tr><td>🔗 Numéro de compte</td> <td>FR76 3000 6000 0123 4567 8901 23</td></tr>
+        </table>
+
+        <!-- 📊 Graphique financier -->
+        <div class="chart-container">
+            <canvas id="financeChart"></canvas>
+        </div>
+
+        <!-- 🔐 PROJETS SECRETS -->
+        <h2>🔐 Projets Internes Stratégiques</h2>
+        <ul class="vip-list">
+            <li>🛰 **Projet Orion** : IA secrète pour l’analyse financière</li>
+            <li>📱 **NeoConnect** : Trading crypto (lancement 2025)</li>
+            <li>🏴‍☠️ **Évasion Fiscale** : Offshores à Hong Kong & Panama</li>
+            <li>💊 **Rachat startup Biotech** : Médicament anti-âge</li>
+        </ul>
+
+        <a href="/logout"><button class="logout-btn">Déconnexion</button></a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('financeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Revenus', 'Dépenses', 'Profits', 'Salaires', 'Banque'],
+                datasets: [{
+                    label: 'M€',
+                    data: [12.5, 4.8, 5.6, 3.2, 5.3],
+                    backgroundColor: ['#16a34a', '#dc2626', '#2563eb', '#d97706', '#374151']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: "#ffffff", font: { size: 10 } }
+                    },
+                    x: {
+                        ticks: { color: "#ffffff", font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: "#ffffff", font: { size: 12 } }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Normalize text files across Windows/Linux containers.
+* text=auto
+
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+Dockerfile text eol=lf
+*.ps1 text eol=crlf
+
+# Binary documentation/application assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+
+*.deb binary
+*.gz binary

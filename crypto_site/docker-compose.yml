@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "7989:7989"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+      - ./backend/data:/app/data
+    command: sh -c "npx prisma generate && npx ts-node scripts/createUser.ts && npx ts-node-dev src/index.ts"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "7988:7988"

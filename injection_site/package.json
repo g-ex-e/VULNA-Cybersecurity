@@ -1,0 +1,18 @@
+{
+    "name": "injection_site",
+    "version": "1.0.0",
+    "description": "Mini-site vulnérable à l'injection SQL",
+    "private": true,
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "chart.js": "^4.4.7",
+        "express": "^4.17.3",
+        "express-session": "^1.18.1",
+        "path": "^0.12.7",
+        "pg": "^8.7.3"
+    }
+}

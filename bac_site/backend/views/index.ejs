@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>CorpHub - Portail Employé</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="bg-red-50 text-gray-900 font-sans">
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-red-600 to-orange-500 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-white tracking-wide">🔥 CorpHub</h1>
+        <p class="text-sm text-red-100">Portail interne des employés</p>
+      </div>
+      <% if (user) { %>
+        <div class="text-right">
+          <p class="text-sm text-red-100">Connecté en tant que</p>
+          <p class="font-semibold text-white"><%= user.username %> (<%= user.role %>)</p>
+          <a href="/logout" class="text-sm text-yellow-200 underline mt-1 inline-block hover:text-white">Déconnexion</a>
+        </div>
+      <% } else { %>
+        <a href="/profile" class="bg-white text-red-600 px-5 py-2 rounded-md font-semibold hover:bg-red-100 shadow border border-white">
+          🔐 Se connecter
+        </a>
+      <% } %>
+    </div>
+  </header>
+
+  <!-- 🔔 INFO TEMPORAIRE -->
+  <section class="bg-orange-100 border border-orange-300 py-4 px-6 text-sm text-orange-800 flex items-center justify-center shadow-inner">
+    <p class="max-w-4xl text-center">
+      🔔 <strong>Note importante :</strong> Nous souhaitons la bienvenue à <span class="font-semibold text-red-700">Lucas</span>, notre nouveau stagiaire, pour une mission d'un mois ! 🎉 
+      Son compte est déjà créé : identifiant <code class="bg-white px-1 py-0.5 rounded border border-gray-300 text-sm">stagiaire1</code> / mot de passe <code class="bg-white px-1 py-0.5 rounded border border-gray-300 text-sm">stagiaire1</code>. 
+      👉 Merci de lui rappeler de modifier son mot de passe dès que possible via <a href="mailto:admin.it@corphub.local" class="underline hover:text-orange-600">admin.it@corphub.com</a>.
+    </p>
+  </section>
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-r from-orange-100 to-red-50 py-20">
+    <div class="text-center max-w-3xl mx-auto px-4">
+      <h2 class="text-4xl font-extrabold text-red-700 mb-4">Bienvenue sur le portail interne de CorpHub</h2>
+      <p class="text-lg text-red-900 mb-8">Tous vos outils RH, documents, tickets & support au même endroit.</p>
+
+      <% if (user) { %>
+        <div class="flex justify-center gap-4 flex-wrap">
+          <a href="/profile" class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 shadow">
+            🧑‍💼 Mon Profil
+          </a>
+        </div>
+      <% } else { %>
+        <a href="/profile" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 shadow-lg">
+          🧑‍💼 Accéder à votre profil
+        </a>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="max-w-6xl mx-auto px-6 mt-16">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">🧩 Modules principaux</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg border-l-4 border-red-500 shadow hover:shadow-lg transition">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-2xl">📑</span>
+          <h4 class="text-lg font-semibold text-red-700">RH & Contrats</h4>
+        </div>
+        <p class="text-gray-600 text-sm">Consultez vos contrats, bulletins de salaire et vos documents RH.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg border-l-4 border-orange-400 shadow hover:shadow-lg transition">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-2xl">📂</span>
+          <h4 class="text-lg font-semibold text-orange-600">Documents partagés</h4>
+        </div>
+        <p class="text-gray-600 text-sm">Accédez aux documents internes transmis par la hiérarchie.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg border-l-4 border-yellow-400 shadow hover:shadow-lg transition">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-2xl">🛠️</span>
+          <h4 class="text-lg font-semibold text-yellow-600">Tickets & Support</h4>
+        </div>
+        <p class="text-gray-600 text-sm">Créez et suivez vos tickets de support technique ou administratif.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="max-w-5xl mx-auto mt-20 bg-white px-6 py-8 rounded-lg shadow border">
+    <h3 class="text-xl font-bold text-gray-800 mb-3">ℹ️ À propos de CorpHub</h3>
+    <p class="text-gray-700 text-sm leading-relaxed">
+      CorpHub est la plateforme interne développée pour simplifier la vie des collaborateurs :
+      RH, gestion documentaire, support technique, tout y est centralisé. Pensée pour l’efficacité,
+      elle améliore la communication entre les équipes.
+    </p>
+    <p class="text-sm text-gray-400 mt-4 italic">Développée avec ❤️ par l'équipe IT CorpHub – © 2025</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-16 py-6 text-center text-sm text-gray-500">
+    &copy; 2025 CorpHub. Tous droits réservés.
+  </footer>
+
+</body>
+</html>

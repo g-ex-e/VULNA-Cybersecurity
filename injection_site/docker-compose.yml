@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  neomarketdb:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: f5SFbvns8acHGFD854sq
+      POSTGRES_DB: neomarketdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  vulnerable_site:
+    build: ./
+    ports:
+      - "8081:8081"
+    depends_on:
+      - neomarketdb

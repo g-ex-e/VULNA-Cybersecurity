@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Visualizer - Prévisualisez vos liens</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .danger-icon {
+            font-size: 3rem;
+            color: red;
+        }
+        .info-section {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center">
+    <h1>🔍 Web Visualizer</h1>
+    <p class="text-muted">Prévisualisez un site avant de cliquer sur son lien.</p>
+
+    <hr>
+
+    <div class="info-section">
+        <h2 class="text-danger">⚠ Attention aux liens suspects !</h2>
+        <p>
+            Ne cliquez pas sur un lien sans savoir où il vous mène ! Certains sites malveillants peuvent :
+        </p>
+        <ul class="list-group">
+            <li class="list-group-item">👉 Voler vos informations personnelles (Phishing)</li>
+            <li class="list-group-item">🦠 Infecter votre ordinateur avec un virus</li>
+            <li class="list-group-item">🔗 Vous rediriger vers des contenus dangereux</li>
+        </ul>
+    </div>
+
+
+    <hr>
+
+    <h3 class="mb-3">🛡 Pourquoi utiliser le Web Visualizer ?</h3>
+    <p>
+        Avec cet outil, vous pouvez voir l'aperçu d'un site <b>sans y aller</b>.
+        Cela vous permet d'éviter les liens dangereux tout en vérifiant leur contenu.
+    </p>
+
+    <form method="POST" class="mt-4">
+        <div class="mb-3">
+            <input type="text" name="url" class="form-control form-control-lg" 
+                   placeholder="Entrez l'URL d'un site..." required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">🔍 Prévisualiser</button>
+    </form>
+
+    <hr>
+
+    <p class="text-muted">
+        ⚡ Cet outil vous permet de mieux naviguer en toute sécurité. Restez vigilant sur les liens que vous ouvrez.
+    </p>
+</div>
+
+</body>
+</html>

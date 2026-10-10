@@ -1,0 +1,16 @@
+.dashboard {
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.dashboard-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dashboard-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

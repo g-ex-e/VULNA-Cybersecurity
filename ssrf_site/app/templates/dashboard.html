@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_name | capitalize }} - IntraCorp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Section {{ page_name | capitalize }}</h1>
+    <p>Cette page est en cours de maintenance.</p>
+    <p>Contactez l'administrateur si vous avez besoin d'accès.</p>
+    <a href="/">Retour à l'accueil</a>
+</body>
+</html>

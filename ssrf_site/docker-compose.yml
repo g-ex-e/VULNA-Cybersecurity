@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ssrf_app:
+    build: .
+    container_name: ssrf_app
+    restart: always
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/app
+    working_dir: /app/app
+    command: ["python3", "app.py"]
+
+  kali_ssrf:
+    build: ./kali
+    container_name: kali_ssrf_terminal
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - "2223:2223"
+    command: ["gotty", "-w", "-p", "2223", "--address", "0.0.0.0", "bash"]
+
+volumes:
+  ssrf_data:

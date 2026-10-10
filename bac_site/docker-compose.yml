@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: bac_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGPORT: 1043
+    ports:
+      - "1043:1043"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web:
+    container_name: bac_webapp
+    build: .
+    ports:
+      - "1041:1041"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=development
+      - PORT=${PORT}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=db
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+    volumes:
+      - ./backend:/app/backend
+      - ./public:/app/public
+
+  kali_ssrf:
+    build: ./kali
+    container_name: kali_bac_terminal
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - "1045:1045"
+    command: ["gotty", "-w", "-p", "1045", "--address", "0.0.0.0", "bash"]
+
+volumes:
+  db_data:

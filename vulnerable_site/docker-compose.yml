@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:4.7-apache
+    container_name: wordpress_vulnerable
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    depends_on:
+      - db
+    command: >
+      sh -c "
+      mkdir -p /var/www/html/wp-content/uploads &&
+      chown -R www-data:www-data /var/www/html/wp-content &&
+      chmod -R 775 /var/www/html/wp-content &&
+      apache2-foreground"
+
+  db:
+    image: mysql:5.7
+    container_name: wordpress_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  kali:
+    build: ./kali
+    container_name: kali_terminal
+    restart: always
+    stdin_open: true
+    tty: true
+    platform: linux/amd64
+    ports:
+      - "2222:2222"
+    command: ["gotty", "-w", "-p", "2222", "--address", "0.0.0.0", "bash"]
+
+volumes:
+  db_data:

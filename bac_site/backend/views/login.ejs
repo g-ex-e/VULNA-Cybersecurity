@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion - CorpHub</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-orange-50 min-h-screen flex items-center justify-center font-sans">
+
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md border-l-4 border-red-500">
+    <h1 class="text-3xl font-bold text-center mb-6 text-red-700">🔐 Connexion à CorpHub</h1>
+    
+    <% if (error) { %>
+      <p class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4 text-sm font-medium"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" required class="mt-1 w-full px-4 py-2 border border-gray-300 rounded focus:ring-red-300 focus:outline-none">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+        <input type="password" id="password" name="password" required class="mt-1 w-full px-4 py-2 border border-gray-300 rounded focus:ring-red-300 focus:outline-none">
+      </div>
+      <button type="submit" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 font-semibold">Se connecter</button>
+    </form>
+
+    <p class="mt-6 text-sm text-gray-500 text-center">CorpHub © 2025 – Accès réservé</p>
+  </div>
+
+</body>
+</html>

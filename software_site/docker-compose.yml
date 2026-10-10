@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # === Frontend DOCUCLOUD ===
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host
+    depends_on:
+      - backend_docucloud
+    networks:
+      - web
+    volumes:
+      - shared-code:/shared
+
+  # === Backend DOCUCLOUD ===
+  backend_docucloud:
+    build:
+      context: ./backend
+    ports:
+      - "3947:3947"
+    networks:
+      - web
+    volumes:
+      - shared-code:/shared
+
+  # === Backend GITHUB ===
+  github_backend:
+    build:
+      context: ./github/backend
+    ports:
+      - "1414:1414"
+    networks:
+      - web
+    volumes:
+      - shared-code:/shared
+
+  # === Frontend GITHUB (servi par nginx via Traefik) ===
+  github_frontend:
+    build:
+      context: ./github/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.github.rule=Host(`github.localhost`)"
+      - "traefik.http.routers.github.entrypoints=web"
+      - "traefik.http.services.github.loadbalancer.server.port=80"
+    networks:
+      - web
+    volumes:
+      - shared-code:/shared
+
+  # === Reverse proxy Traefik
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:3698"
+    ports:
+      - "3698:3698"   # Pour accéder à github.localhost
+      - "3699:8080"   # Dashboard Traefik
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - web
+
+volumes:
+  shared-code:
+
+networks:
+  web:

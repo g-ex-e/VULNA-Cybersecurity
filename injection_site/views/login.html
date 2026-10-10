@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMarket - Connexion</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <img src="logo.png" alt="NeoMarket Logo" class="logo">
+    <div class="login-container">
+        <div id="error-message" class="error-message"></div> 
+        <div id="sql-results" class="query-result">
+            <div class="scrollable-results" id="sql-results"></div>
+        </div>
+        
+        <form id="login-form">
+            <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
+            <input type="password" name="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <script>
+document.getElementById("login-form").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
+    const sqlResults = document.getElementById("sql-results");
+    const resultContainer = document.querySelector(".query-result");
+
+    const response = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        window.location.href = data.redirect;
+    } else {
+        errorMessage.textContent = data.message;
+        errorMessage.style.display = "block";
+
+        if (data.data && data.data.length > 0) {
+            sqlResults.innerHTML = `<pre>${JSON.stringify(data.data, null, 2)}</pre>`;
+            resultContainer.style.display = "block";
+        } else {
+            sqlResults.innerHTML = "";
+            resultContainer.style.display = "none";
+        }
+    }
+});
+    </script>
+</body>
+</html>
